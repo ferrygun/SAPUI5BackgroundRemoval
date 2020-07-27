@@ -1,0 +1,73 @@
+<mvc:View
+        xmlns:html="http://www.w3.org/1999/xhtml"
+        xmlns:mvc="sap.ui.core.mvc"
+	    xmlns:l="sap.ui.layout"
+	    xmlns:f="sap.ui.layout.form"
+	    xmlns:lab="openui5.camera"
+	    xmlns:core="sap.ui.core"
+	    xmlns="sap.m"
+        controllerName="Camera.controller.Home"
+        displayBlock="true">
+	<App>
+		<pages>
+			<Page title="{i18n>appTitle}">
+				<content>
+                    <ObjectHeader
+				            title="Image Background Removal"
+				            backgroundDesign="Solid"
+				            number="{/photos/length}"
+				            numberUnit="photos" >
+			        </ObjectHeader>
+			        <IconTabBar
+				            expanded="{device>/isNoPhone}"
+				            class="sapUiSmallMarginBottom sapUiResponsiveContentPadding"
+                            select="onTabSelect">
+				        <items>
+					        <IconTabFilter
+						            text="Demo"
+                                    key="demo">
+                                <l:DynamicSideContent
+			                            class="sapUiDSCExplored sapUiContentPadding"
+			                            sideContentFallDown="BelowM"
+			                            containerQuery="true"
+			                            showSideContent="true">
+			                        <l:mainContent>
+                                        <lab:Camera
+                                                id="idCamera"
+                                                width="800"
+                                                height="600"
+                                                snapshot=".onSnapshot"
+                                                singleShotMode="false" />
+			                        </l:mainContent>
+			                        <l:sideContent>
+                                        <List
+                	                            headerText="Photos"
+                	                            growing="false"
+                	                            items="{
+                		                               path: '/photos'
+                	                                   }"
+                                                noDataText="{i18n>nophotos}"
+                                                >
+                	                        <CustomListItem>
+                		                        <Image
+                			                            src="{src}"
+                			                            densityAware="false"
+                			                            height="100px" >
+                		                        </Image>
+                	                        </CustomListItem>
+                                        </List>
+			                        </l:sideContent>
+                                </l:DynamicSideContent>
+					        </IconTabFilter>
+							<IconTabFilter
+						            text="Result"
+                                    key="info">
+                                    <Image src="{/photosres/0/src}" width="100%" />                                
+					        </IconTabFilter>
+				        </items>
+			        </IconTabBar>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
