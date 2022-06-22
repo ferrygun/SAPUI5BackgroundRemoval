@@ -3,6 +3,6 @@ flask-cors==3.0.8
 Pillow==7.1.2
 requests==2.23.0
 torch==0.4.1
-numpy==1.15.2
+numpy==1.22.0
 scikit-image==0.14.0
 torchvision==0.2.1
